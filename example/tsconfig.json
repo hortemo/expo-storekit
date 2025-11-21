@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@hortemo/expo-storekit": ["../src/index"],
+      "@hortemo/expo-storekit/*": ["../src/*"]
+    }
+  }
+}
