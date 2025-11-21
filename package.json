@@ -1,6 +1,6 @@
 {
   "name": "@hortemo/expo-storekit",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Expo module for StoreKit 2 purchases, subscriptions, and entitlement sync on iOS/tvOS.",
   "main": "build/index.js",
   "types": "build/index.d.ts",

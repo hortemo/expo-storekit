@@ -57,7 +57,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - ExpoStoreKit (0.1.0):
+  - ExpoStoreKit (1.0.0):
     - ExpoModulesCore
   - FBLazyVector (0.81.5)
   - hermes-engine (0.81.5):
@@ -1933,7 +1933,7 @@ SPEC CHECKSUMS:
   ExpoFont: cf9d90ec1d3b97c4f513211905724c8171f82961
   ExpoKeepAwake: 1a2e820692e933c94a565ec3fbbe38ac31658ffe
   ExpoModulesCore: e8ec7f8727caf51a49d495598303dd420ca994bf
-  ExpoStoreKit: 57fc325746e6d05a8aea2ca51118c620205f5b8b
+  ExpoStoreKit: 2f39c7b710259d26c0fe80226ee2294ff7d244ee
   FBLazyVector: e95a291ad2dadb88e42b06e0c5fb8262de53ec12
   hermes-engine: 9f4dfe93326146a1c99eb535b1cb0b857a3cd172
   RCTDeprecation: 943572d4be82d480a48f4884f670135ae30bf990
