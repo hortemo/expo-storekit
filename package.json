@@ -41,9 +41,6 @@
     "react": "*",
     "react-native": "*"
   },
-  "dependencies": {
-    "expo-modules-core": "^3.0.0"
-  },
   "keywords": [
     "react-native",
     "expo",
