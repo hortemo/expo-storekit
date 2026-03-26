@@ -1,5 +1,6 @@
 import { NativeModule, requireNativeModule } from "expo-modules-core";
 import {
+  AppTransaction,
   Product,
   ProductPurchaseResult,
   PurchaseOptions,
@@ -19,6 +20,7 @@ export declare class ExpoStoreKitModule extends NativeModule<StoreKitModuleEvent
   finishTransaction(transactionId: string): Promise<void>;
   sync(): Promise<void>;
   requestCurrentEntitlements(): Promise<TransactionVerificationResult[]>;
+  requestAppTransaction(): Promise<AppTransaction>;
 }
 
 export default requireNativeModule<ExpoStoreKitModule>("ExpoStoreKit");
