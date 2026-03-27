@@ -157,6 +157,13 @@ function App(): JSX.Element {
         PRODUCTS[subscription1Id].transactionSchema
       ).parse(subscription1Update);
 
+      logProgress("Requesting app transaction...");
+      const appTransaction = await StoreKit.requestAppTransaction();
+      z.object({
+        originalPurchaseDate: z.string(),
+        originalAppVersion: z.string(),
+      }).parse(appTransaction);
+
       logProgress("Syncing with the App Store...");
       await StoreKit.sync();
 

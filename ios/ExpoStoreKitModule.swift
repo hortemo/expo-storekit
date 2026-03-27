@@ -42,6 +42,20 @@ public class ExpoStoreKitModule: Module {
         .map { $0.toJS() }
         .collect()
     }
+
+    AsyncFunction("requestAppTransaction") { () async throws -> [String: Any] in
+      guard #available(iOS 16.0, tvOS 16.0, *) else {
+        throw ExpoStoreKitError.invalid("AppTransaction requires iOS 16.0 or later")
+      }
+      let shared = try await AppTransaction.shared
+      if case .verified(let appTransaction) = shared {
+        return [
+          "originalPurchaseDate": appTransaction.originalPurchaseDate.toJS(),
+          "originalAppVersion": appTransaction.originalAppVersion
+        ]
+      }
+      throw ExpoStoreKitError.invalid("App transaction verification failed")
+    }
     
     OnStartObserving {
       print("OnStartObserving")

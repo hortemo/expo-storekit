@@ -103,6 +103,11 @@ export interface PurchaseOptions {
   };
 }
 
+export interface AppTransaction {
+  originalPurchaseDate: string;
+  originalAppVersion: string;
+}
+
 export type ProductPurchaseResult =
   | {
       type: "success";
