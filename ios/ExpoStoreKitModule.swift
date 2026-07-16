@@ -29,7 +29,7 @@ public class ExpoStoreKitModule: Module {
     }
     
     AsyncFunction("finishTransaction") { (transactionId: String) async throws -> Void in
-      let transaction = try await Transaction.fromJS(transactionId)
+      let transaction = try await StoreKit.Transaction.fromJS(transactionId)
       await transaction.finish()
     }
     
@@ -38,7 +38,7 @@ public class ExpoStoreKitModule: Module {
     }
     
     AsyncFunction("requestCurrentEntitlements") { () async throws -> [[String: Any]] in
-      return await Transaction.currentEntitlements
+      return await StoreKit.Transaction.currentEntitlements
         .map { $0.toJS() }
         .collect()
     }
@@ -61,7 +61,7 @@ public class ExpoStoreKitModule: Module {
       print("OnStartObserving")
       self.updatesTask?.cancel()
       self.updatesTask = Task { [weak self] in
-        for await result in Transaction.updates {
+        for await result in StoreKit.Transaction.updates {
           print("TRANSACTION_UPDATES!")
           guard let self else {
             return
@@ -137,13 +137,13 @@ fileprivate extension Product.SubscriptionPeriod {
   }
 }
 
-fileprivate extension Transaction {
-  static func fromJS(_ idJS: String) async throws -> Transaction {
+fileprivate extension StoreKit.Transaction {
+  static func fromJS(_ idJS: String) async throws -> StoreKit.Transaction {
     guard let id = UInt64(idJS) else {
       throw ExpoStoreKitError.notFound("Invalid transaction ID \(idJS)")
     }
     
-    for await result in Transaction.all {
+    for await result in StoreKit.Transaction.all {
       let transaction = result.transaction
       if transaction.id == id {
         return transaction
@@ -192,8 +192,8 @@ fileprivate extension Product.PurchaseResult {
   }
 }
 
-fileprivate extension VerificationResult<Transaction> {
-  var transaction: Transaction {
+fileprivate extension VerificationResult<StoreKit.Transaction> {
+  var transaction: StoreKit.Transaction {
     switch self {
     case .verified(let transaction):
       return transaction
@@ -281,7 +281,7 @@ fileprivate extension Product.ProductType {
   }
 }
 
-fileprivate extension Transaction.OfferType {
+fileprivate extension StoreKit.Transaction.OfferType {
   func toJS() -> String {
     switch self {
     case .introductory:
@@ -296,7 +296,7 @@ fileprivate extension Transaction.OfferType {
   }
 }
 
-fileprivate extension Transaction.OwnershipType {
+fileprivate extension StoreKit.Transaction.OwnershipType {
   func toJS() -> String {
     switch self {
     case .purchased:
@@ -309,7 +309,7 @@ fileprivate extension Transaction.OwnershipType {
   }
 }
 
-fileprivate extension Transaction.RevocationReason {
+fileprivate extension StoreKit.Transaction.RevocationReason {
   func toJS() -> String {
     switch self {
     case .developerIssue:
